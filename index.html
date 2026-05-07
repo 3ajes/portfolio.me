@@ -98,6 +98,27 @@
         .hero h1 span { display: block; color: var(--accent); }
         .hero-desc { font-size: 1.2rem; color: var(--text-dim); max-width: 600px; margin-bottom: 2.5rem; line-height: 1.6; }
 
+        /* CV Button Style */
+        .cv-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            width: fit-content;
+            transition: 0.3s;
+            box-shadow: 0 10px 20px var(--accent-glow);
+        }
+        .cv-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px var(--accent-glow);
+            filter: brightness(1.1);
+        }
+
         .section-title { font-size: 2.5rem; margin-bottom: 3rem; font-weight: 800; }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
 
@@ -151,14 +172,34 @@
         <section class="hero">
             <h1 class="reveal">Bajes <span>Moh.</span></h1>
             <p class="hero-desc reveal">Computer Science student at UKM focusing on Cybersecurity, full-stack ecosystems, and user-centric mobile applications.</p>
+            <div class="reveal">
+                <a href="Bajes_Yaghi_(CV).pdf" class="cv-btn" download>
+                    <i class="fas fa-file-download"></i> Download CV
+                </a>
+            </div>
         </section>
 
-        <!-- Projects Section -->
         <section id="projects" style="padding-bottom: 8rem;">
-            <h2 class="section-title reveal">Projects & Collaborative Work</h2>
+            <h2 class="section-title reveal">Expertise & Work</h2>
             <div class="grid">
                 
-                <!-- Hublot Ordering System -->
+                <div class="glass-card reveal">
+                    <i class="fas fa-toolbox"></i>
+                    <h3>Technical Stack</h3>
+                    <p>Proficient in a variety of modern tools and languages used for secure application development and network analysis.</p>
+                    <div class="tag-container">
+                        <span class="tag">Flutter/Dart</span>
+                        <span class="tag">Kotlin</span>
+                        <span class="tag">Java</span>
+                        <span class="tag">PHP</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">Firebase</span>
+                        <span class="tag">Wireshark</span>
+                        <span class="tag">Cisco Packet Tracer</span>
+                        <span class="tag">MySQL</span>
+                    </div>
+                </div>
+
                 <div class="glass-card reveal">
                     <i class="fas fa-watch"></i>
                     <h3>Hublot Ordering System</h3>
@@ -170,7 +211,6 @@
                     </div>
                 </div>
 
-                <!-- QuietSpace -->
                 <div class="glass-card reveal">
                     <i class="fas fa-location-arrow"></i>
                     <h3>QuietSpace (Study Finder)</h3>
@@ -182,7 +222,6 @@
                     </div>
                 </div>
 
-                <!-- MedTime -->
                 <div class="glass-card reveal">
                     <i class="fas fa-prescription-bottle-medical"></i>
                     <h3>MedTime</h3>
@@ -193,7 +232,6 @@
                     </div>
                 </div>
 
-                <!-- PHP MVC Project -->
                 <div class="glass-card reveal">
                     <i class="fas fa-server"></i>
                     <h3>PHP MVC Framework</h3>
@@ -205,7 +243,6 @@
                     </div>
                 </div>
 
-                <!-- Secure Network Design -->
                 <div class="glass-card reveal">
                     <i class="fas fa-network-wired"></i>
                     <h3>Secure Network Topology</h3>
@@ -219,16 +256,15 @@
             </div>
         </section>
 
-        <!-- Contact Section -->
         <section id="contact" style="padding-bottom: 10rem;">
             <h2 class="section-title reveal">Get in Touch</h2>
             <div class="glass-card reveal" style="align-items: center; text-align: center;">
                 <p class="hero-desc">Feel free to reach out for collaborations or technical discussions.</p>
                 <div style="display: flex; gap: 2.5rem; margin-top: 1rem;">
-    <a href="https://www.linkedin.com/in/bajes-m-b-yaghi-35b415346/" target="_blank" style="color: var(--text); font-size: 2rem;"><i class="fab fa-linkedin"></i></a>
-    <a href="https://github.com/3ajes" target="_blank" style="color: var(--text); font-size: 2rem;"><i class="fab fa-github"></i></a>
-    <a href="mailto:bajesyaghi7@gmail.com" style="color: var(--text); font-size: 2rem;"><i class="fas fa-envelope"></i></a>
-</div>
+                    <a href="https://www.linkedin.com/in/bajes-m-b-yaghi-35b415346/" target="_blank" style="color: var(--text); font-size: 2rem;"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/3ajes" target="_blank" style="color: var(--text); font-size: 2rem;"><i class="fab fa-github"></i></a>
+                    <a href="mailto:bajesyaghi7@gmail.com" style="color: var(--text); font-size: 2rem;"><i class="fas fa-envelope"></i></a>
+                </div>
             </div>
         </section>
     </div>
