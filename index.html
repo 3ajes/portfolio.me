@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bajes Moh | Creative Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --bg: #050505;
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --accent: #10b981; 
+            --accent-glow: rgba(16, 185, 129, 0.3);
+            --text: #ffffff;
+            --text-dim: #a1a1aa;
+        }
+
+        [data-theme="light"] {
+            --bg: #f4f4f5;
+            --glass: rgba(0, 0, 0, 0.05);
+            --glass-border: rgba(0, 0, 0, 0.1);
+            --accent: #059669;
+            --accent-glow: rgba(5, 150, 105, 0.2);
+            --text: #09090b;
+            --text-dim: #52525b;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            transition: background 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .bg-aura {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), var(--accent-glow) 0%, transparent 50%);
+            filter: blur(80px);
+            opacity: 0.6;
+            transition: background 0.3s ease;
+        }
+
+        #cursor {
+            width: 8px; height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+        }
+
+        #cursor-follower {
+            width: 30px; height: 30px;
+            border: 1px solid var(--accent);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            transition: transform 0.15s ease-out;
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+        nav {
+            padding: 2rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo { font-weight: 800; font-size: 1.5rem; letter-spacing: -1px; }
+        .logo span { color: var(--accent); }
+
+        .theme-btn {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            width: 45px; height: 45px;
+            border-radius: 12px;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+            backdrop-filter: blur(5px);
+        }
+
+        .hero { height: 80vh; display: flex; flex-direction: column; justify-content: center; }
+        .hero h1 { font-size: clamp(3.5rem, 10vw, 7rem); line-height: 0.9; margin-bottom: 1.5rem; font-weight: 900; }
+        .hero h1 span { display: block; color: var(--accent); }
+        .hero-desc { font-size: 1.2rem; color: var(--text-dim); max-width: 600px; margin-bottom: 2.5rem; line-height: 1.6; }
+
+        .section-title { font-size: 2.5rem; margin-bottom: 3rem; font-weight: 800; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
+
+        .glass-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(15px);
+            padding: 2.5rem;
+            border-radius: 32px;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .glass-card:hover { transform: translateY(-10px); border-color: var(--accent); }
+        .glass-card i { font-size: 2rem; color: var(--accent); margin-bottom: 1.5rem; }
+        .glass-card h3 { font-size: 1.4rem; margin-bottom: 1rem; }
+        .glass-card p { color: var(--text-dim); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem; }
+
+        .tag-container { margin-top: auto; display: flex; gap: 8px; flex-wrap: wrap; }
+        .tag { font-size: 0.7rem; background: var(--glass-border); padding: 4px 10px; border-radius: 15px; color: var(--accent); }
+
+        .reveal { opacity: 0; transform: translateY(30px); transition: 1s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        .wa-float {
+            position: fixed; bottom: 40px; right: 40px;
+            background: #25d366; width: 60px; height: 60px;
+            border-radius: 18px; display: flex; align-items: center;
+            justify-content: center; color: white; font-size: 1.8rem;
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.2);
+            z-index: 1000; text-decoration: none;
+        }
+
+        @media (max-width: 768px) { #cursor, #cursor-follower { display: none; } * { cursor: auto; } }
+    </style>
+</head>
+<body>
+
+    <div id="cursor"></div>
+    <div id="cursor-follower"></div>
+    <div class="bg-aura"></div>
+
+    <div class="container">
+        <nav>
+            <div class="logo">BAJES<span>.</span></div>
+            <button class="theme-btn" id="theme-toggle"><i class="fas fa-moon" id="theme-icon"></i></button>
+        </nav>
+
+        <section class="hero">
+            <h1 class="reveal">Bajes <span>Moh.</span></h1>
+            <p class="hero-desc reveal">Computer Science student at UKM focusing on Cybersecurity, full-stack ecosystems, and user-centric mobile applications.</p>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" style="padding-bottom: 8rem;">
+            <h2 class="section-title reveal">Projects & Collaborative Work</h2>
+            <div class="grid">
+                
+                <!-- Hublot Ordering System -->
+                <div class="glass-card reveal">
+                    <i class="fas fa-watch"></i>
+                    <h3>Hublot Ordering System</h3>
+                    <p>A comprehensive order management mockup for Hublot watches. Features staff-side tools to manage customers, staff, and order history with automated unique-ID invoice generation.</p>
+                    <div class="tag-container">
+                        <span class="tag">Database Design</span>
+                        <span class="tag">UI/UX Mockup</span>
+                        <span class="tag">Order Logic</span>
+                    </div>
+                </div>
+
+                <!-- QuietSpace -->
+                <div class="glass-card reveal">
+                    <i class="fas fa-location-arrow"></i>
+                    <h3>QuietSpace (Study Finder)</h3>
+                    <p>An AI-integrated mobile solution helping UKM students find and navigate to optimal study zones using Google Maps and Firebase integration.</p>
+                    <div class="tag-container">
+                        <span class="tag">Kotlin</span>
+                        <span class="tag">Firebase</span>
+                        <span class="tag">Google Maps</span>
+                    </div>
+                </div>
+
+                <!-- MedTime -->
+                <div class="glass-card reveal">
+                    <i class="fas fa-prescription-bottle-medical"></i>
+                    <h3>MedTime</h3>
+                    <p>A smart medication tracking and scheduling application designed to streamline healthcare routines and dosage alerts for users.</p>
+                    <div class="tag-container">
+                        <span class="tag">Java</span>
+                        <span class="tag">Android Studio</span>
+                    </div>
+                </div>
+
+                <!-- PHP MVC Project -->
+                <div class="glass-card reveal">
+                    <i class="fas fa-server"></i>
+                    <h3>PHP MVC Framework</h3>
+                    <p>A custom-built web application architecture using PHP MVC patterns for clean academic project management and data handling.</p>
+                    <div class="tag-container">
+                        <span class="tag">PHP</span>
+                        <span class="tag">MySQL</span>
+                        <span class="tag">MVC Architecture</span>
+                    </div>
+                </div>
+
+                <!-- Secure Network Design -->
+                <div class="glass-card reveal">
+                    <i class="fas fa-network-wired"></i>
+                    <h3>Secure Network Topology</h3>
+                    <p>A forensic-ready network design incorporating IDS/IPS and secure protocols to protect against infrastructure vulnerabilities.</p>
+                    <div class="tag-container">
+                        <span class="tag">Cybersecurity</span>
+                        <span class="tag">Cisco Packet Tracer</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" style="padding-bottom: 10rem;">
+            <h2 class="section-title reveal">Get in Touch</h2>
+            <div class="glass-card reveal" style="align-items: center; text-align: center;">
+                <p class="hero-desc">Feel free to reach out for collaborations or technical discussions.</p>
+                <div style="display: flex; gap: 2.5rem; margin-top: 1rem;">
+    <a href="https://www.linkedin.com/in/bajes-m-b-yaghi-35b415346/" target="_blank" style="color: var(--text); font-size: 2rem;"><i class="fab fa-linkedin"></i></a>
+    <a href="https://github.com/3ajes" target="_blank" style="color: var(--text); font-size: 2rem;"><i class="fab fa-github"></i></a>
+    <a href="mailto:bajesyaghi7@gmail.com" style="color: var(--text); font-size: 2rem;"><i class="fas fa-envelope"></i></a>
+</div>
+            </div>
+        </section>
+    </div>
+
+    <a href="https://wa.me/60143232584" class="wa-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+    <script>
+        const cursor = document.getElementById('cursor');
+        const follower = document.getElementById('cursor-follower');
+        const aura = document.querySelector('.bg-aura');
+        
+        document.addEventListener('mousemove', (e) => {
+            const { clientX, clientY } = e;
+            cursor.style.transform = `translate(${clientX}px, ${clientY}px)`;
+            aura.style.setProperty('--x', `${(clientX / window.innerWidth) * 100}%`);
+            aura.style.setProperty('--y', `${(clientY / window.innerHeight) * 100}%`);
+            setTimeout(() => {
+                follower.style.transform = `translate(${clientX - 11}px, ${clientY - 11}px)`;
+            }, 60);
+        });
+
+        const themeBtn = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        themeBtn.addEventListener('click', () => {
+            if (document.body.getAttribute('data-theme') === 'light') {
+                document.body.removeAttribute('data-theme');
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+            } else {
+                document.body.setAttribute('data-theme', 'light');
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+            }
+        });
+
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                if (elementTop < windowHeight - 80) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        window.onload = reveal;
+    </script>
+</body>
+</html>
