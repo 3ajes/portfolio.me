@@ -46,6 +46,7 @@
             transition: background 0.3s ease;
         }
 
+        /* Kinetic Cursor Styling */
         #cursor {
             width: 8px; height: 8px;
             background: var(--accent);
@@ -54,6 +55,7 @@
             pointer-events: none;
             z-index: 9999;
             mix-blend-mode: difference;
+            transition: background 0.3s ease, mix-blend-mode 0.3s ease;
         }
 
         #cursor-follower {
@@ -63,7 +65,17 @@
             position: fixed;
             pointer-events: none;
             z-index: 9998;
-            transition: transform 0.15s ease-out;
+            transition: transform 0.15s ease-out, border-color 0.3s ease;
+        }
+
+        /* Cursor adjustments for Light Mode */
+        [data-theme="light"] #cursor {
+            background: #000000;
+            mix-blend-mode: normal;
+        }
+
+        [data-theme="light"] #cursor-follower {
+            border-color: #000000;
         }
 
         .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
@@ -173,7 +185,7 @@
             <h1 class="reveal">Bajes <span>Moh.</span></h1>
             <p class="hero-desc reveal">Computer Science student at UKM focusing on Cybersecurity, full-stack ecosystems, and user-centric mobile applications.</p>
             <div class="reveal">
-                <a href="Bajes_Yaghi_(CV).pdf" class="cv-btn" download>
+                <a href="Bajes_Yaghi_CV.pdf" class="cv-btn" download>
                     <i class="fas fa-file-download"></i> Download CV
                 </a>
             </div>
@@ -186,7 +198,7 @@
                 <div class="glass-card reveal">
                     <i class="fas fa-toolbox"></i>
                     <h3>Technical Stack</h3>
-                    <p>Proficient in a variety of modern tools and languages used for secure application development and network analysis.</p>
+                    <p>Proficient in modern tools and languages used for secure application development and network forensic analysis.</p>
                     <div class="tag-container">
                         <span class="tag">Flutter/Dart</span>
                         <span class="tag">Kotlin</span>
@@ -203,10 +215,9 @@
                 <div class="glass-card reveal">
                     <i class="fas fa-watch"></i>
                     <h3>Hublot Ordering System</h3>
-                    <p>A comprehensive order management mockup for Hublot watches. Features staff-side tools to manage customers, staff, and order history with automated unique-ID invoice generation.</p>
+                    <p>Mockup order management system for luxury timepieces. Features customer management and unique automated invoice generation.</p>
                     <div class="tag-container">
                         <span class="tag">Database Design</span>
-                        <span class="tag">UI/UX Mockup</span>
                         <span class="tag">Order Logic</span>
                     </div>
                 </div>
@@ -214,7 +225,7 @@
                 <div class="glass-card reveal">
                     <i class="fas fa-location-arrow"></i>
                     <h3>QuietSpace (Study Finder)</h3>
-                    <p>An AI-integrated mobile solution helping UKM students find and navigate to optimal study zones using Google Maps and Firebase integration.</p>
+                    <p>AI-integrated mobile solution for UKM students to find optimal study zones using Google Maps and Firebase.</p>
                     <div class="tag-container">
                         <span class="tag">Kotlin</span>
                         <span class="tag">Firebase</span>
@@ -225,7 +236,7 @@
                 <div class="glass-card reveal">
                     <i class="fas fa-prescription-bottle-medical"></i>
                     <h3>MedTime</h3>
-                    <p>A smart medication tracking and scheduling application designed to streamline healthcare routines and dosage alerts for users.</p>
+                    <p>Smart medication tracking application focused on intuitive scheduling and user healthcare dosage alerts.</p>
                     <div class="tag-container">
                         <span class="tag">Java</span>
                         <span class="tag">Android Studio</span>
@@ -235,21 +246,20 @@
                 <div class="glass-card reveal">
                     <i class="fas fa-server"></i>
                     <h3>PHP MVC Framework</h3>
-                    <p>A custom-built web application architecture using PHP MVC patterns for clean academic project management and data handling.</p>
+                    <p>A web architecture built on MVC patterns for robust data handling and project management.</p>
                     <div class="tag-container">
                         <span class="tag">PHP</span>
                         <span class="tag">MySQL</span>
-                        <span class="tag">MVC Architecture</span>
                     </div>
                 </div>
 
                 <div class="glass-card reveal">
                     <i class="fas fa-network-wired"></i>
                     <h3>Secure Network Topology</h3>
-                    <p>A forensic-ready network design incorporating IDS/IPS and secure protocols to protect against infrastructure vulnerabilities.</p>
+                    <p>Forensic-ready design featuring IDS/IPS integration to protect academic infrastructure from vulnerabilities.</p>
                     <div class="tag-container">
                         <span class="tag">Cybersecurity</span>
-                        <span class="tag">Cisco Packet Tracer</span>
+                        <span class="tag">Packet Tracer</span>
                     </div>
                 </div>
 
