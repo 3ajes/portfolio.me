@@ -43,7 +43,6 @@
 
         .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
 
-        /* ── NAV ── */
         nav {
             padding: 1.8rem 0;
             display: flex;
@@ -86,7 +85,6 @@
         }
         .theme-btn:hover { background: var(--glass-border); }
 
-        /* ── HERO ── */
         .hero {
             min-height: 82vh;
             display: flex;
@@ -121,7 +119,6 @@
             background: var(--glass);
         }
 
-        /* ── SECTIONS ── */
         section { padding-bottom: 7rem; }
         .section-title {
             font-size: 2rem;
@@ -129,14 +126,12 @@
             margin-bottom: 2.5rem;
         }
 
-        /* ── GRID ── */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1.5rem;
         }
 
-        /* ── CARD ── */
         .card {
             background: var(--glass);
             border: 1px solid var(--glass-border);
@@ -156,10 +151,7 @@
             margin-bottom: 1.2rem;
         }
 
-        .card-icon {
-            font-size: 1.6rem;
-            line-height: 1;
-        }
+        .card-icon { font-size: 1.6rem; line-height: 1; }
 
         .badge {
             font-size: 0.62rem;
@@ -184,7 +176,6 @@
             color: var(--accent);
         }
 
-        /* ── CONTACT ── */
         .contact-card {
             background: var(--glass);
             border: 1px solid var(--glass-border);
@@ -205,7 +196,6 @@
             flex-direction: column;
             align-items: center;
             gap: 6px;
-            color: var(--text);
             text-decoration: none;
             font-size: 0.8rem;
             font-weight: 600;
@@ -215,7 +205,6 @@
         .contact-link:hover { color: var(--accent); transform: translateY(-3px); }
         .contact-link .icon { font-size: 1.8rem; }
 
-        /* ── WA FLOAT ── */
         .wa-float {
             position: fixed; bottom: 36px; right: 36px;
             background: #25d366;
@@ -231,7 +220,6 @@
         }
         .wa-float:hover { transform: scale(1.08); }
 
-        /* ── REVEAL ── */
         .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.8s ease, transform 0.8s ease; }
         .reveal.active { opacity: 1; transform: none; }
 
@@ -247,20 +235,14 @@
 
 <div class="container">
 
-    <!-- NAV -->
     <nav>
         <div class="logo">BAJES<span>.</span></div>
         <div class="nav-right">
-            <!--
-                IMPORTANT: Upload your CV PDF to your GitHub repo first,
-                then update this href to the filename, e.g. "Bajes_Yaghi_CV.pdf"
-            -->
-            <a class="cv-btn" href="Bajes%20Yaghi%20(CV).pdf" download>&#8595; Download CV</a>
+            <a class="cv-btn" href="BajesYaghi(CV).pdf" download>&#8595; Download CV</a>
             <button class="theme-btn" id="theme-toggle" title="Toggle theme">&#9790;</button>
         </div>
     </nav>
 
-    <!-- HERO -->
     <section class="hero">
         <h1 class="reveal">Bajes <span>Yaghi.</span></h1>
         <p class="hero-desc reveal">
@@ -278,14 +260,13 @@
         </div>
     </section>
 
-    <!-- PROJECTS -->
     <section id="projects">
         <h2 class="section-title reveal">Projects</h2>
         <div class="grid">
 
             <div class="card reveal">
                 <div class="card-top">
-                    <span class="card-icon">📍</span>
+                    <span class="card-icon">&#128205;</span>
                     <span class="badge badge-active">Active</span>
                 </div>
                 <h3>QuietSpace — AI Study Finder</h3>
@@ -301,7 +282,7 @@
 
             <div class="card reveal">
                 <div class="card-top">
-                    <span class="card-icon">⌚</span>
+                    <span class="card-icon">&#8987;</span>
                     <span class="badge badge-done">Completed</span>
                 </div>
                 <h3>Hublot Inventory Management</h3>
@@ -317,7 +298,7 @@
 
             <div class="card reveal">
                 <div class="card-top">
-                    <span class="card-icon">💊</span>
+                    <span class="card-icon">&#128138;</span>
                     <span class="badge badge-done">Completed</span>
                 </div>
                 <h3>MedTime — Medication Tracker</h3>
@@ -332,7 +313,7 @@
 
             <div class="card reveal">
                 <div class="card-top">
-                    <span class="card-icon">🔒</span>
+                    <span class="card-icon">&#128274;</span>
                     <span class="badge badge-done">Completed</span>
                 </div>
                 <h3>Secure Network Topology</h3>
@@ -348,7 +329,7 @@
 
             <div class="card reveal">
                 <div class="card-top">
-                    <span class="card-icon">🖥️</span>
+                    <span class="card-icon">&#128187;</span>
                     <span class="badge badge-done">Completed</span>
                 </div>
                 <h3>PHP MVC Web Application</h3>
@@ -364,20 +345,19 @@
         </div>
     </section>
 
-    <!-- CONTACT -->
     <section id="contact">
         <h2 class="section-title reveal">Get in Touch</h2>
         <div class="contact-card reveal">
             <p>Open to opportunities in software development, network administration, and database engineering. Feel free to reach out for collaborations or technical discussions.</p>
             <div class="contact-links">
                 <a class="contact-link" href="https://www.linkedin.com/in/bajes-m-b-yaghi-35b415346/" target="_blank">
-                    <span class="icon">💼</span> LinkedIn
+                    <span class="icon">&#128188;</span> LinkedIn
                 </a>
                 <a class="contact-link" href="https://github.com/3ajes" target="_blank">
-                    <span class="icon">🐙</span> GitHub
+                    <span class="icon">&#128008;</span> GitHub
                 </a>
                 <a class="contact-link" href="mailto:bajesyaghi7@gmail.com">
-                    <span class="icon">✉️</span> Email
+                    <span class="icon">&#9993;</span> Email
                 </a>
             </div>
         </div>
@@ -385,26 +365,22 @@
 
 </div>
 
-<!-- WhatsApp float -->
-<a class="wa-float" href="https://wa.me/60143232584" target="_blank" title="WhatsApp">💬</a>
+<a class="wa-float" href="https://wa.me/60143232584" target="_blank" title="WhatsApp">&#128172;</a>
 
 <script>
-    // Aura follow mouse
     const aura = document.getElementById('aura');
     document.addEventListener('mousemove', e => {
         aura.style.setProperty('--x', (e.clientX / window.innerWidth  * 100) + '%');
         aura.style.setProperty('--y', (e.clientY / window.innerHeight * 100) + '%');
     });
 
-    // Theme toggle
-    const btn  = document.getElementById('theme-toggle');
+    const btn = document.getElementById('theme-toggle');
     btn.addEventListener('click', () => {
         const isLight = document.body.getAttribute('data-theme') === 'light';
         document.body.setAttribute('data-theme', isLight ? '' : 'light');
         btn.innerHTML = isLight ? '&#9790;' : '&#9728;';
     });
 
-    // Scroll reveal
     function reveal() {
         document.querySelectorAll('.reveal').forEach(el => {
             if (el.getBoundingClientRect().top < window.innerHeight - 60)
