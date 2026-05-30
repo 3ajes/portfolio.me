@@ -3,84 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bajes Moh | Creative Portfolio</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Bajes Yaghi | Portfolio</title>
     <style>
         :root {
             --bg: #050505;
-            --glass: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --accent: #10b981; 
-            --accent-glow: rgba(16, 185, 129, 0.3);
+            --glass: rgba(255,255,255,0.03);
+            --glass-border: rgba(255,255,255,0.1);
+            --accent: #10b981;
+            --accent-glow: rgba(16,185,129,0.25);
             --text: #ffffff;
             --text-dim: #a1a1aa;
         }
-
         [data-theme="light"] {
             --bg: #f4f4f5;
-            --glass: rgba(0, 0, 0, 0.05);
-            --glass-border: rgba(0, 0, 0, 0.1);
+            --glass: rgba(0,0,0,0.04);
+            --glass-border: rgba(0,0,0,0.1);
             --accent: #059669;
-            --accent-glow: rgba(5, 150, 105, 0.2);
+            --accent-glow: rgba(5,150,105,0.15);
             --text: #09090b;
             --text-dim: #52525b;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
+        * { margin:0; padding:0; box-sizing:border-box; }
 
         body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            background-color: var(--bg);
+            font-family: system-ui, -apple-system, sans-serif;
+            background: var(--bg);
             color: var(--text);
             overflow-x: hidden;
-            transition: background 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: background 0.4s ease, color 0.4s ease;
         }
 
         .bg-aura {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1;
-            background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), var(--accent-glow) 0%, transparent 50%);
-            filter: blur(80px);
-            opacity: 0.6;
-            transition: background 0.3s ease;
-        }
-
-        /* Kinetic Cursor Styling */
-        #cursor {
-            width: 8px; height: 8px;
-            background: var(--accent);
-            border-radius: 50%;
-            position: fixed;
+            position: fixed; inset: 0; z-index: -1;
+            background: radial-gradient(circle at var(--x,50%) var(--y,50%), var(--accent-glow) 0%, transparent 55%);
+            filter: blur(60px);
             pointer-events: none;
-            z-index: 9999;
-            mix-blend-mode: difference;
-            transition: background 0.3s ease, mix-blend-mode 0.3s ease;
-        }
-
-        #cursor-follower {
-            width: 30px; height: 30px;
-            border: 1px solid var(--accent);
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9998;
-            transition: transform 0.15s ease-out, border-color 0.3s ease;
-        }
-
-        /* Cursor adjustments for Light Mode */
-        [data-theme="light"] #cursor {
-            background: #000000;
-            mix-blend-mode: normal;
-        }
-
-        [data-theme="light"] #cursor-follower {
-            border-color: #000000;
         }
 
         .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+
+        /* ── NAV ── */
         nav {
-            padding: 2rem 0;
+            padding: 1.8rem 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -89,237 +54,366 @@
             z-index: 100;
         }
 
-        .logo { font-weight: 800; font-size: 1.5rem; letter-spacing: -1px; }
+        .logo { font-weight: 900; font-size: 1.4rem; letter-spacing: -1px; }
         .logo span { color: var(--accent); }
+
+        .nav-right { display: flex; gap: 0.75rem; align-items: center; }
+
+        .cv-btn {
+            background: var(--accent);
+            border: none;
+            padding: 0.55rem 1.1rem;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 0.82rem;
+            font-weight: 700;
+            text-decoration: none;
+            letter-spacing: 0.01em;
+            transition: opacity 0.2s, transform 0.2s;
+        }
+        .cv-btn:hover { opacity: 0.82; transform: translateY(-1px); }
 
         .theme-btn {
             background: var(--glass);
             border: 1px solid var(--glass-border);
-            width: 45px; height: 45px;
-            border-radius: 12px;
+            width: 42px; height: 42px;
+            border-radius: 10px;
             color: var(--text);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: 0.3s;
-            backdrop-filter: blur(5px);
+            font-size: 1.1rem;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+            transition: background 0.2s;
         }
+        .theme-btn:hover { background: var(--glass-border); }
 
-        .hero { height: 80vh; display: flex; flex-direction: column; justify-content: center; }
-        .hero h1 { font-size: clamp(3.5rem, 10vw, 7rem); line-height: 0.9; margin-bottom: 1.5rem; font-weight: 900; }
-        .hero h1 span { display: block; color: var(--accent); }
-        .hero-desc { font-size: 1.2rem; color: var(--text-dim); max-width: 600px; margin-bottom: 2.5rem; line-height: 1.6; }
-
-        /* CV Button Style */
-        .cv-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 24px;
-            background: var(--accent);
-            color: white;
-            text-decoration: none;
-            border-radius: 12px;
-            font-weight: 600;
-            width: fit-content;
-            transition: 0.3s;
-            box-shadow: 0 10px 20px var(--accent-glow);
-        }
-        .cv-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px var(--accent-glow);
-            filter: brightness(1.1);
-        }
-
-        .section-title { font-size: 2.5rem; margin-bottom: 3rem; font-weight: 800; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
-
-        .glass-card {
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            backdrop-filter: blur(15px);
-            padding: 2.5rem;
-            border-radius: 32px;
-            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        /* ── HERO ── */
+        .hero {
+            min-height: 82vh;
             display: flex;
             flex-direction: column;
-            height: 100%;
+            justify-content: center;
+            padding: 4rem 0 2rem;
         }
 
-        .glass-card:hover { transform: translateY(-10px); border-color: var(--accent); }
-        .glass-card i { font-size: 2rem; color: var(--accent); margin-bottom: 1.5rem; }
-        .glass-card h3 { font-size: 1.4rem; margin-bottom: 1rem; }
-        .glass-card p { color: var(--text-dim); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem; }
+        .hero h1 {
+            font-size: clamp(3.2rem, 10vw, 6.5rem);
+            line-height: 0.92;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+        }
+        .hero h1 span { color: var(--accent); display: block; }
 
-        .tag-container { margin-top: auto; display: flex; gap: 8px; flex-wrap: wrap; }
-        .tag { font-size: 0.7rem; background: var(--glass-border); padding: 4px 10px; border-radius: 15px; color: var(--accent); }
+        .hero-desc {
+            font-size: 1.05rem;
+            color: var(--text-dim);
+            max-width: 600px;
+            line-height: 1.75;
+            margin-bottom: 2rem;
+        }
 
-        .reveal { opacity: 0; transform: translateY(30px); transition: 1s ease-out; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
+        .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 2.5rem; }
+        .hero-tag {
+            font-size: 0.73rem;
+            padding: 5px 12px;
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            color: var(--accent);
+            background: var(--glass);
+        }
 
+        /* ── SECTIONS ── */
+        section { padding-bottom: 7rem; }
+        .section-title {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 2.5rem;
+        }
+
+        /* ── GRID ── */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* ── CARD ── */
+        .card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(12px);
+            padding: 2rem;
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.4s cubic-bezier(0.23,1,0.32,1), border-color 0.3s;
+        }
+        .card:hover { transform: translateY(-8px); border-color: var(--accent); }
+
+        .card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.2rem;
+        }
+
+        .card-icon {
+            font-size: 1.6rem;
+            line-height: 1;
+        }
+
+        .badge {
+            font-size: 0.62rem;
+            font-weight: 700;
+            padding: 3px 9px;
+            border-radius: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .badge-active { background: rgba(16,185,129,0.15); color: #10b981; border: 1px solid rgba(16,185,129,0.3); }
+        .badge-done   { background: rgba(161,161,170,0.08); color: var(--text-dim); border: 1px solid var(--glass-border); }
+
+        .card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.65rem; }
+        .card p  { font-size: 0.88rem; color: var(--text-dim); line-height: 1.65; flex: 1; margin-bottom: 1.25rem; }
+
+        .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; }
+        .tag {
+            font-size: 0.67rem;
+            padding: 3px 9px;
+            border-radius: 12px;
+            background: var(--glass-border);
+            color: var(--accent);
+        }
+
+        /* ── CONTACT ── */
+        .contact-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        .contact-card p {
+            color: var(--text-dim);
+            font-size: 1rem;
+            line-height: 1.7;
+            max-width: 520px;
+            margin: 0 auto 2rem;
+        }
+        .contact-links { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; }
+        .contact-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-dim);
+            transition: color 0.2s, transform 0.2s;
+        }
+        .contact-link:hover { color: var(--accent); transform: translateY(-3px); }
+        .contact-link .icon { font-size: 1.8rem; }
+
+        /* ── WA FLOAT ── */
         .wa-float {
-            position: fixed; bottom: 40px; right: 40px;
-            background: #25d366; width: 60px; height: 60px;
-            border-radius: 18px; display: flex; align-items: center;
-            justify-content: center; color: white; font-size: 1.8rem;
-            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.2);
-            z-index: 1000; text-decoration: none;
+            position: fixed; bottom: 36px; right: 36px;
+            background: #25d366;
+            width: 54px; height: 54px;
+            border-radius: 16px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            text-decoration: none;
+            box-shadow: 0 8px 24px rgba(37,211,102,0.25);
+            z-index: 1000;
+            transition: transform 0.2s;
         }
+        .wa-float:hover { transform: scale(1.08); }
 
-        @media (max-width: 768px) { #cursor, #cursor-follower { display: none; } * { cursor: auto; } }
+        /* ── REVEAL ── */
+        .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .reveal.active { opacity: 1; transform: none; }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: clamp(2.6rem, 14vw, 4rem); }
+            .grid { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
 
-    <div id="cursor"></div>
-    <div id="cursor-follower"></div>
-    <div class="bg-aura"></div>
+<div class="bg-aura" id="aura"></div>
 
-    <div class="container">
-        <nav>
-            <div class="logo">BAJES<span>.</span></div>
-            <button class="theme-btn" id="theme-toggle"><i class="fas fa-moon" id="theme-icon"></i></button>
-        </nav>
+<div class="container">
 
-        <section class="hero">
-            <h1 class="reveal">Bajes <span>Moh.</span></h1>
-            <p class="hero-desc reveal">Computer Science student at UKM focusing on Cybersecurity, full-stack ecosystems, and user-centric mobile applications.</p>
-            <div class="reveal">
-                <a href="Bajes_Yaghi_(CV).pdf" class="cv-btn" download>
-                    <i class="fas fa-file-download"></i> Download CV
+    <!-- NAV -->
+    <nav>
+        <div class="logo">BAJES<span>.</span></div>
+        <div class="nav-right">
+            <!--
+                IMPORTANT: Upload your CV PDF to your GitHub repo first,
+                then update this href to the filename, e.g. "Bajes_Yaghi_CV.pdf"
+            -->
+            <a class="cv-btn" href="Bajes_Yaghi_CV.pdf" download>&#8595; Download CV</a>
+            <button class="theme-btn" id="theme-toggle" title="Toggle theme">&#9790;</button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <h1 class="reveal">Bajes <span>Yaghi.</span></h1>
+        <p class="hero-desc reveal">
+            Computer Science undergraduate at UKM with hands-on experience in mobile app development,
+            network administration, and cybersecurity. Building practical, user-centred solutions —
+            from AI-integrated mobile apps to secure network architectures.
+        </p>
+        <div class="hero-tags reveal">
+            <span class="hero-tag">Flutter · Dart · Kotlin</span>
+            <span class="hero-tag">Python · JavaScript · PHP</span>
+            <span class="hero-tag">Firebase · Google Maps API</span>
+            <span class="hero-tag">Cisco / CCNA</span>
+            <span class="hero-tag">Cybersecurity</span>
+            <span class="hero-tag">SQL · Database Admin</span>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+        <h2 class="section-title reveal">Projects</h2>
+        <div class="grid">
+
+            <div class="card reveal">
+                <div class="card-top">
+                    <span class="card-icon">📍</span>
+                    <span class="badge badge-active">Active</span>
+                </div>
+                <h3>QuietSpace — AI Study Finder</h3>
+                <p>Cross-platform mobile app helping UKM students locate available study zones and predict campus crowding in real time. Powered by Firebase and Google Maps API, built with Flutter for Android and iOS.</p>
+                <div class="tags">
+                    <span class="tag">Flutter</span>
+                    <span class="tag">Dart</span>
+                    <span class="tag">Firebase</span>
+                    <span class="tag">Google Maps API</span>
+                    <span class="tag">AI</span>
+                </div>
+            </div>
+
+            <div class="card reveal">
+                <div class="card-top">
+                    <span class="card-icon">⌚</span>
+                    <span class="badge badge-done">Completed</span>
+                </div>
+                <h3>Hublot Inventory Management</h3>
+                <p>Full-stack web-based POS and inventory system for luxury retail. Features role-based access control, automated invoice generation, and a glassmorphism UI with dynamic light/dark theming.</p>
+                <div class="tags">
+                    <span class="tag">PHP</span>
+                    <span class="tag">MySQL</span>
+                    <span class="tag">Bootstrap</span>
+                    <span class="tag">LAMP Stack</span>
+                    <span class="tag">RBAC</span>
+                </div>
+            </div>
+
+            <div class="card reveal">
+                <div class="card-top">
+                    <span class="card-icon">💊</span>
+                    <span class="badge badge-done">Completed</span>
+                </div>
+                <h3>MedTime — Medication Tracker</h3>
+                <p>Native Android wellness app aligned with SDG 3 for tracking patient medication schedules. Features real-time UI via ViewModel, 5-screen navigation, and a Material You interface with custom time-pickers.</p>
+                <div class="tags">
+                    <span class="tag">Kotlin</span>
+                    <span class="tag">Jetpack Compose</span>
+                    <span class="tag">Android Studio</span>
+                    <span class="tag">Material You</span>
+                </div>
+            </div>
+
+            <div class="card reveal">
+                <div class="card-top">
+                    <span class="card-icon">🔒</span>
+                    <span class="badge badge-done">Completed</span>
+                </div>
+                <h3>Secure Network Topology</h3>
+                <p>Forensic-ready enterprise network design with IDS/IPS, OSPF routing, NAT, VLANs, and ACLs. Fully designed and simulated in Cisco Packet Tracer with complete documentation.</p>
+                <div class="tags">
+                    <span class="tag">Cisco Packet Tracer</span>
+                    <span class="tag">OSPF</span>
+                    <span class="tag">NAT / ACLs</span>
+                    <span class="tag">IDS/IPS</span>
+                    <span class="tag">VLANs</span>
+                </div>
+            </div>
+
+            <div class="card reveal">
+                <div class="card-top">
+                    <span class="card-icon">🖥️</span>
+                    <span class="badge badge-done">Completed</span>
+                </div>
+                <h3>PHP MVC Web Application</h3>
+                <p>Custom-built MVC framework in PHP for academic project and data management. Structured with clean separation of concerns, dynamic routing, and MySQL-backed data handling via PDO.</p>
+                <div class="tags">
+                    <span class="tag">PHP</span>
+                    <span class="tag">MySQL</span>
+                    <span class="tag">MVC</span>
+                    <span class="tag">PDO</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <h2 class="section-title reveal">Get in Touch</h2>
+        <div class="contact-card reveal">
+            <p>Open to opportunities in software development, network administration, and database engineering. Feel free to reach out for collaborations or technical discussions.</p>
+            <div class="contact-links">
+                <a class="contact-link" href="https://www.linkedin.com/in/bajes-m-b-yaghi-35b415346/" target="_blank">
+                    <span class="icon">💼</span> LinkedIn
+                </a>
+                <a class="contact-link" href="https://github.com/3ajes" target="_blank">
+                    <span class="icon">🐙</span> GitHub
+                </a>
+                <a class="contact-link" href="mailto:bajesyaghi7@gmail.com">
+                    <span class="icon">✉️</span> Email
                 </a>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="projects" style="padding-bottom: 8rem;">
-            <h2 class="section-title reveal">Expertise & Work</h2>
-            <div class="grid">
-                
-                <div class="glass-card reveal">
-                    <i class="fas fa-toolbox"></i>
-                    <h3>Technical Stack</h3>
-                    <p>Proficient in modern tools and languages used for secure application development and network forensic analysis.</p>
-                    <div class="tag-container">
-                        <span class="tag">Flutter/Dart</span>
-                        <span class="tag">Kotlin</span>
-                        <span class="tag">Java</span>
-                        <span class="tag">PHP</span>
-                        <span class="tag">Python</span>
-                        <span class="tag">Firebase</span>
-                        <span class="tag">Wireshark</span>
-                        <span class="tag">Cisco Packet Tracer</span>
-                        <span class="tag">MySQL</span>
-                    </div>
-                </div>
+</div>
 
-                <div class="glass-card reveal">
-                    <i class="fas fa-watch"></i>
-                    <h3>Hublot Ordering System</h3>
-                    <p>Mockup order management system for luxury timepieces. Features customer management and unique automated invoice generation.</p>
-                    <div class="tag-container">
-                        <span class="tag">Database Design</span>
-                        <span class="tag">Order Logic</span>
-                    </div>
-                </div>
+<!-- WhatsApp float -->
+<a class="wa-float" href="https://wa.me/60143232584" target="_blank" title="WhatsApp">💬</a>
 
-                <div class="glass-card reveal">
-                    <i class="fas fa-location-arrow"></i>
-                    <h3>QuietSpace (Study Finder)</h3>
-                    <p>AI-integrated mobile solution for UKM students to find optimal study zones using Google Maps and Firebase.</p>
-                    <div class="tag-container">
-                        <span class="tag">Kotlin</span>
-                        <span class="tag">Firebase</span>
-                        <span class="tag">Google Maps</span>
-                    </div>
-                </div>
+<script>
+    // Aura follow mouse
+    const aura = document.getElementById('aura');
+    document.addEventListener('mousemove', e => {
+        aura.style.setProperty('--x', (e.clientX / window.innerWidth  * 100) + '%');
+        aura.style.setProperty('--y', (e.clientY / window.innerHeight * 100) + '%');
+    });
 
-                <div class="glass-card reveal">
-                    <i class="fas fa-prescription-bottle-medical"></i>
-                    <h3>MedTime</h3>
-                    <p>Smart medication tracking application focused on intuitive scheduling and user healthcare dosage alerts.</p>
-                    <div class="tag-container">
-                        <span class="tag">Java</span>
-                        <span class="tag">Android Studio</span>
-                    </div>
-                </div>
+    // Theme toggle
+    const btn  = document.getElementById('theme-toggle');
+    btn.addEventListener('click', () => {
+        const isLight = document.body.getAttribute('data-theme') === 'light';
+        document.body.setAttribute('data-theme', isLight ? '' : 'light');
+        btn.innerHTML = isLight ? '&#9790;' : '&#9728;';
+    });
 
-                <div class="glass-card reveal">
-                    <i class="fas fa-server"></i>
-                    <h3>PHP MVC Framework</h3>
-                    <p>A web architecture built on MVC patterns for robust data handling and project management.</p>
-                    <div class="tag-container">
-                        <span class="tag">PHP</span>
-                        <span class="tag">MySQL</span>
-                    </div>
-                </div>
-
-                <div class="glass-card reveal">
-                    <i class="fas fa-network-wired"></i>
-                    <h3>Secure Network Topology</h3>
-                    <p>Forensic-ready design featuring IDS/IPS integration to protect academic infrastructure from vulnerabilities.</p>
-                    <div class="tag-container">
-                        <span class="tag">Cybersecurity</span>
-                        <span class="tag">Packet Tracer</span>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <section id="contact" style="padding-bottom: 10rem;">
-            <h2 class="section-title reveal">Get in Touch</h2>
-            <div class="glass-card reveal" style="align-items: center; text-align: center;">
-                <p class="hero-desc">Feel free to reach out for collaborations or technical discussions.</p>
-                <div style="display: flex; gap: 2.5rem; margin-top: 1rem;">
-                    <a href="https://www.linkedin.com/in/bajes-m-b-yaghi-35b415346/" target="_blank" style="color: var(--text); font-size: 2rem;"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://github.com/3ajes" target="_blank" style="color: var(--text); font-size: 2rem;"><i class="fab fa-github"></i></a>
-                    <a href="mailto:bajesyaghi7@gmail.com" style="color: var(--text); font-size: 2rem;"><i class="fas fa-envelope"></i></a>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <a href="https://wa.me/60143232584" class="wa-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
-
-    <script>
-        const cursor = document.getElementById('cursor');
-        const follower = document.getElementById('cursor-follower');
-        const aura = document.querySelector('.bg-aura');
-        
-        document.addEventListener('mousemove', (e) => {
-            const { clientX, clientY } = e;
-            cursor.style.transform = `translate(${clientX}px, ${clientY}px)`;
-            aura.style.setProperty('--x', `${(clientX / window.innerWidth) * 100}%`);
-            aura.style.setProperty('--y', `${(clientY / window.innerHeight) * 100}%`);
-            setTimeout(() => {
-                follower.style.transform = `translate(${clientX - 11}px, ${clientY - 11}px)`;
-            }, 60);
+    // Scroll reveal
+    function reveal() {
+        document.querySelectorAll('.reveal').forEach(el => {
+            if (el.getBoundingClientRect().top < window.innerHeight - 60)
+                el.classList.add('active');
         });
+    }
+    window.addEventListener('scroll', reveal);
+    window.addEventListener('load', reveal);
+</script>
 
-        const themeBtn = document.getElementById('theme-toggle');
-        const themeIcon = document.getElementById('theme-icon');
-        themeBtn.addEventListener('click', () => {
-            if (document.body.getAttribute('data-theme') === 'light') {
-                document.body.removeAttribute('data-theme');
-                themeIcon.classList.replace('fa-sun', 'fa-moon');
-            } else {
-                document.body.setAttribute('data-theme', 'light');
-                themeIcon.classList.replace('fa-moon', 'fa-sun');
-            }
-        });
-
-        function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                if (elementTop < windowHeight - 80) {
-                    reveals[i].classList.add("active");
-                }
-            }
-        }
-        window.addEventListener("scroll", reveal);
-        window.onload = reveal;
-    </script>
 </body>
 </html>
